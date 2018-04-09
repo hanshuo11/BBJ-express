@@ -3,7 +3,7 @@ var pool  = mysql.createPool({
     host     : 'localhost',
     user     : 'root',
     password : '',
-    database : 'bibijia'
+    database : 'bbj'
 });
 
 exports.query = function (sql, param, callback) {

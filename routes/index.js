@@ -8,9 +8,5 @@ router.get('/', function (req, res, next) {
     res.render('index', {title: 'Express'});
 });
 
-// 用户注册
-router.post('/register', user.register);
-
-router.post('/index', user.index);
 
 module.exports = router;

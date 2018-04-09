@@ -2,16 +2,15 @@ var userModel = require('../models/userModel')
 
 
 exports.index=function(req, res, next) {
-    console.log(req.body);
     userModel.queryUser(function(row){
-        // res.json(row);
-        res.cookie("yuyu", row[0], {maxAge: 60 * 1000});
-        res.send("cookie ok")
+        res.json(row);
+        // res.cookie("yuyu", row[0], {maxAge: 60 * 1000});
+        // res.send("cookie ok")
     });
 }
 
 // 用户注册
-exports.register=function(req, res, next) {
+exports.userRegister=function(req, res, next) {
     var username=req.body.username;
     var password=req.body.password;
     var phone=req.body.username;
