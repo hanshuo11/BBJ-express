@@ -1,12 +1,13 @@
 var storeModel = require('../models/storeModel');
+var dbProcess=require('../public/javascripts/common.js');
+
 // 配置上传图片的属性
 var formidable = require('formidable'),
     fs = require('fs'),
     path = require('path');
-TITLE = 'formidable上传示例',
+    TITLE = 'formidable上传示例',
     AVATAR_UPLOAD_FOLDER = '/uploadImag/',
     domain = "http://localhost:3000";
-
 var storeId = 00;
 
 // exports.index=function(req, res, next) {
@@ -21,29 +22,17 @@ var storeId = 00;
 
 // 店铺注册
 exports.storeRegister = function (req, res, next) {
-    var store_userName = req.body.username;
-    var store_password = req.body.password;
-    var store_name = req.body.storeName;
-    var store_businessScope = req.body.businessScope;
-    var store_openTime = req.body.openTime;
-    var store_address = req.body.address;
-    var store_bossName = req.body.bossName;
-    var store_phoneNum = req.body.phoneNum;
-    var store_moneyId = req.body.moneyId;
-    var store_idCardNum = req.body.idCardNum;
-    var store_idCardName = req.body.idCardName;
-    var store_idCardAddress = req.body.idCardAddress;
-    var store_bossPhoneNum = req.body.contact;
-    var state = "false";
-
-    storeModel.storeRegister(store_userName, store_password, store_name, store_businessScope, store_openTime, store_address, store_bossName, store_phoneNum, store_moneyId, store_idCardNum, store_idCardName, store_idCardAddress, store_bossPhoneNum, state, function (row) {
+    var data=req.body;
+    // 增加审核状态标识是否被审核
+    // store_userName, store_password, store_name, store_businessScope, store_openTime, store_address, store_bossName, store_phoneNum, store_moneyId, store_idCardNum, store_idCardName, store_idCardAddress, store_bossPhoneNum, state
+    data.state = "false";
+    storeModel.storeRegister(data, function (row) {
         res.json(row);
     })
     // userModel.findUser(username,function(row){
     //     if(row[0]){
     //         res.send("该账号已被注册");
     //     }else{
-
     //     }
     // });
 }
@@ -94,11 +83,11 @@ exports.uploadingImg = function (req, res, next) {
         // console.log("newPath", newPath);
         fs.renameSync(files.file.path, newPath);  //重命名
         storeModel.uploadImg(showUrl, insertId, function (row) {
-            if(row.affectedRows==1){
+            if (row.affectedRows == 1) {
                 res.json({
                     "newPath": showUrl
                 });
-            }else{
+            } else {
                 res.json({
                     "error": "error"
                 });
