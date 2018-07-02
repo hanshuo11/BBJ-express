@@ -22,5 +22,24 @@ router.post('/getRefuseContent', store.getRefuseContent);
 router.post('/selectListByState', store.selectListByState);
 // 店铺登录
 router.post('/storeLogin', store.storeLogin);
+// 得到店铺分类
+router.post('/getStoreClasses', store.getStoreClasses);
+// 修改店铺信息
+router.post('/editorStoreInf', store.editorStoreInf);
+// 删除店铺分类
+router.post('/deleteStoreClasses', store.deleteStoreClasses);
+// 增加店铺分类
+router.post('/addStoreClasses', store.addStoreClasses);
+// 商品展示图片上传
+router.post('/uploadingStoreShowImg', store.uploadingStoreShowImg);
+// 添加商品
+router.post('/addGoodsInf', store.addGoodsInf);
+// 上传商品详情图片
+router.post('/uploadingStoreInfImg', store.uploadingStoreInfImg);
+// 获取店铺已添加商品列表 getInf
+router.post('/getStoreGoodsList', store.getStoreGoodsList);
+// 得到某个商品的详情表
+router.post('/getGoodsInfImg', store.getGoodsInfImg);
+
 
 module.exports = router;
